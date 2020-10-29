@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+	
+	<run>
+		<seed>1337</seed>
+		<lang>EN</lang>
+		<init_data>False</init_data>
+		<processed>True</processed>
+		<pipeline>ucto</pipeline>
+		<path_pipeline>/home/madhumita/clamp/ClampCMD_1.2.1/run_ner_pipeline.sh</path_pipeline>
+		<split_data>False</split_data>
+		<featurize>False</featurize>
+		<feat_type>bow</feat_type>
+		<content_type>word</content_type>
+		<val_type>tf-idf</val_type>
+		<feat_level>pt</feat_level>
+		<resample>False</resample>
+		<feat_selection>
+			<select_best>False</select_best>
+			<n>50</n>
+			<type>num</type>
+			<select_best_overall>False</select_best_overall>
+			<sel_criteria>chi2</sel_criteria>
+		</feat_selection>
+		<embedding>
+			<process_embeddings>gen</process_embeddings>
+			<dim>100</dim>
+			<algo>sg</algo>
+			<tool>fasttext</tool>
+		</embedding>
+		<pretraining>
+			<pretrain>True</pretrain>
+			<rep_type>sdae</rep_type>
+			<load_model>False</load_model>
+			<sdae>
+				<n_epochs>300</n_epochs>
+				<n_hid_layers>1</n_hid_layers>
+				<n_hid>800</n_hid>
+				<dropout>0.05</dropout>
+			</sdae>
+		</pretraining>
+		<ensemble_tech>
+			<ensemble>False</ensemble>
+			<models>doc2vec,sdae</models>
+			<type>concat</type>
+		</ensemble_tech>
+		<ffnn>
+			<n_epochs>100</n_epochs>
+			<n_hid_layers>0</n_hid_layers>
+			<n_hid>570</n_hid>
+			<act_fn>sigmoid</act_fn>
+		</ffnn>
+		
+		<hnn>
+			<max_sent_len>140</max_sent_len>
+			<max_note_len>150</max_note_len>
+			<max_pt_len>80</max_pt_len>
+			<sent_emb_dim>100</sent_emb_dim>
+			<note_emb_dim>300</note_emb_dim>
+			<pt_emb_dim>500</pt_emb_dim>
+			<dropout>0.5</dropout>
+		</hnn>
+		
+		<pred_algo>sdae</pred_algo>
+		<pred_type>in_hosp</pred_type>
+		
+	</run>
+	
+	
+	<db>
+		<MYSQL_HOST></MYSQL_HOST>
+		<MYSQL_UNAME></MYSQL_UNAME>
+		<MYSQL_PASS></MYSQL_PASS>
+		<MYSQL_PORT></MYSQL_PORT>
+	    
+	    <MYSQL_UZA_DB></MYSQL_UZA_DB>
+	    <MYSQL_MIMIC_DB></MYSQL_MIMIC_DB>
+
+	</db>
+
+	<paths>
+		<PATH_INPUT>../input/</PATH_INPUT>
+		<PATH_RESOURCES>../resources/</PATH_RESOURCES>
+		<PATH_OUTPUT>../output/</PATH_OUTPUT>
+		<PATH_CONTENT_MIMIC></PATH_CONTENT_MIMIC>
+		<PATH_PROCESSED_UCTO_MIMIC></PATH_PROCESSED_UCTO_MIMIC>
+		<PATH_PROCESSED_CLAMP_MIMIC></PATH_PROCESSED_CLAMP_MIMIC>
+		<PATH_CONTENT_CONCEPTS_MIMIC></PATH_CONTENT_CONCEPTS_MIMIC>
+		<PATH_CONTENT_CUI_MIMIC></PATH_CONTENT_CUI_MIMIC>
+                <PATH_CUI_MIMIC></PATH_CUI_MIMIC>
+                <PATH_NORMALIZED_MIMIC></PATH_NORMALIZED_MIMIC>
+		<PATH_EMBEDDING></PATH_EMBEDDING>
+	</paths>
+
+</configuration>
